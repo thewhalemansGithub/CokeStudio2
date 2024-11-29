@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqnkpb3f4jmh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_su3py"]
+size = Vector3(1.60376, 1.79535, 0.0374756)
+
+[node name="fuck" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+metadata/Moveable = true
+metadata/Stackable = true
+metadata/Furni = true
+metadata/on = false
+metadata/wall = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_su3py")
+
+[node name="leg_1" type="RayCast3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.735747, 4, 0.0416515)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_2" type="RayCast3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.735747, 4, 0.00401267)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_3" type="RayCast3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74488, 4, 0.0416515)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_4" type="RayCast3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.74488, 4, 0.00401267)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true

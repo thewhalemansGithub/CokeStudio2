@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://b0vkxiagcu2th"]
+
+[ext_resource type="Texture2D" uid="uid://brhw0vpp7nwrp" path="res://assets/textures/mixer_emissive.jpg" id="1_efdtx"]
+[ext_resource type="Texture2D" uid="uid://bb7yeygmndf3j" path="res://assets/textures/mixer_baseColor.jpg" id="1_l88lf"]
+[ext_resource type="Texture2D" uid="uid://cuaw3y471ofvk" path="res://assets/textures/mixer_metallic.jpg" id="2_6jhc1"]
+[ext_resource type="Texture2D" uid="uid://b08xyutta3lpa" path="res://assets/textures/mixer_normal.png" id="3_wkht6"]
+[ext_resource type="Texture2D" uid="uid://cl4iv3virlvg6" path="res://assets/textures/mixer_roughness.jpg" id="4_taxgr"]
+
+[resource]
+albedo_texture = ExtResource("1_l88lf")
+metallic = 1.0
+metallic_texture = ExtResource("2_6jhc1")
+roughness_texture = ExtResource("4_taxgr")
+emission_enabled = true
+emission_texture = ExtResource("1_efdtx")
+normal_enabled = true
+normal_texture = ExtResource("3_wkht6")

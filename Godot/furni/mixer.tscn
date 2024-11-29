@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxa303jetguwf"]
+
+[ext_resource type="Script" path="res://furni/scripts/mixer.gd" id="1_5ki26"]
+[ext_resource type="PackedScene" uid="uid://clwreicxqwci7" path="res://assets/mixer.glb" id="2_ki6ns"]
+
+[node name="cube" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+metadata/Name = "Mixer"
+metadata/Desc = "Mixer"
+
+[node name="mixer" parent="." instance=ExtResource("2_ki6ns")]
+script = ExtResource("1_5ki26")
+metadata/Moveable = true
+metadata/Stackable = true
+
+[node name="legs" type="Node3D" parent="mixer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.0607, 0.042098)
+
+[node name="leg_1" type="RayCast3D" parent="mixer/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.401017, 6, 0.355908)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_2" type="RayCast3D" parent="mixer/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.401017, 6, -0.440655)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_3" type="RayCast3D" parent="mixer/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398487, 6, 0.355908)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_4" type="RayCast3D" parent="mixer/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.398487, 6, -0.440655)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="mixer"]
+transform = Transform3D(1, 0, 0, 0, -0.893693, -0.44868, 0, 0.44868, -0.893693, 0.0154873, 1.16148, -0.31773)
+layers = 513
+light_color = Color(0.341176, 0.909804, 0.227451, 1)
+shadow_enabled = true
+spot_angle = 83.3866

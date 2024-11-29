@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://di43uyxqa6h5v"]
+
+[ext_resource type="PackedScene" uid="uid://c07uhvlxqywp0" path="res://assets/seperator.glb" id="1_ab60a"]
+[ext_resource type="Script" path="res://furni/scripts/seperator.gd" id="1_wb26j"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_wb26j")
+
+[node name="seperator2" parent="." instance=ExtResource("1_ab60a")]

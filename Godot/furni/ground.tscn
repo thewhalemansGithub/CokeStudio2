@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://chfn4ckhiimus"]
+
+[ext_resource type="Texture2D" uid="uid://ck47tjemnfj60" path="res://assets/textures/ground_checkers.png" id="1_jcqam"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to0ax"]
+resource_name = "cube"
+cull_mode = 2
+albedo_texture = ExtResource("1_jcqam")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eyj6j"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"name": "cube",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a4o18"]
+resource_name = "ground_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_to0ax"),
+"name": "cube",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 191, 255, 255, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_eyj6j")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yaln0"]
+data = PackedVector3Array(-1, -2, 1, -1, 0, -1, -1, 0, 1, -1, -2, 1, -1, -2, -1, -1, 0, -1, -1, -2, -1, 1, 0, -1, -1, 0, -1, -1, -2, -1, 1, -2, -1, 1, 0, -1, 1, -2, -1, 1, 0, 1, 1, 0, -1, 1, -2, -1, 1, -2, 1, 1, 0, 1, 1, -2, 1, -1, 0, 1, 1, 0, 1, 1, -2, 1, -1, -2, 1, -1, 0, 1, -1, -2, -1, 1, -2, 1, 1, -2, -1, -1, -2, -1, -1, -2, 1, 1, -2, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 0, 1, -1, 0, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_buv4t"]
+data = PackedVector3Array(-1, 0, 1, 1, 0, -1, 1, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Node3D" type="Node3D"]
+metadata/Stackable = true
+metadata/Furni = false
+metadata/Moveable = false
+
+[node name="ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("ArrayMesh_a4o18")
+skeleton = NodePath("")
+metadata/ground = true
+metadata/Stackable = true
+
+[node name="ground" type="StaticBody3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/ground"]
+shape = SubResource("ConcavePolygonShape3D_yaln0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ground"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_buv4t")

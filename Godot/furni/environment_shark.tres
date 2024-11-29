@@ -1,0 +1,16 @@
+[gd_resource type="Environment" format=3 uid="uid://5e3fjtpw5v8k"]
+
+[resource]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(2.69532e-06, 0.536858, 0.757707, 1)
+ambient_light_energy = 16.0
+ssao_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(1.3236e-07, 0.113448, 0.185573, 1)
+fog_light_energy = 16.0
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 89.2

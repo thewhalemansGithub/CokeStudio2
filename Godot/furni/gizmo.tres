@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dis6ru54ufak7"]
+
+[ext_resource type="Texture2D" uid="uid://dbf8vpcgoq2hb" path="res://assets/textures/gizmo.png" id="1_kqg1p"]
+
+[resource]
+transparency = 4
+blend_mode = 1
+no_depth_test = true
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_kqg1p")
+emission_texture = ExtResource("1_kqg1p")

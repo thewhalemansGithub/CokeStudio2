@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1fvxdryw381"]
+
+[ext_resource type="PackedScene" uid="uid://bh8ne1xawfc03" path="res://assets/cables.glb" id="1_hr3nv"]
+
+[node name="cube" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+metadata/Stackable = true
+metadata/Desc = "Cables and Wires for your Studio"
+metadata/Name = "Cable"
+
+[node name="cables" parent="." instance=ExtResource("1_hr3nv")]
+metadata/Moveable = true
+metadata/Stackable = true
+
+[node name="legs" type="Node3D" parent="cables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.0607, 0.042098)
+
+[node name="leg_1" type="RayCast3D" parent="cables/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11617, 6, 0.0374058)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_2" type="RayCast3D" parent="cables/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00944632, 6, -0.206128)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="leg_3" type="RayCast3D" parent="cables/legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15318, 6, -0.0174147)
+target_position = Vector3(0, -12, 0)
+collision_mask = 3
+hit_from_inside = true

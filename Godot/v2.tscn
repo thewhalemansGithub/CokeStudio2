@@ -1,0 +1,560 @@
+[gd_scene load_steps=29 format=3 uid="uid://bta66xywc0scp"]
+
+[ext_resource type="Environment" uid="uid://dfb2fqe0p022o" path="res://furni/environment_main.tres" id="1_5vk6l"]
+[ext_resource type="Script" path="res://scripts/v2.gd" id="1_6xmsn"]
+[ext_resource type="PackedScene" uid="uid://cqfuegjf2xyqf" path="res://furni/room.tscn" id="1_7g0b3"]
+[ext_resource type="Shader" path="res://processor.gdshader" id="3_cv514"]
+[ext_resource type="Script" path="res://scripts/cameraV2.gd" id="3_j6faj"]
+[ext_resource type="StyleBox" uid="uid://8yjk70tilgtd" path="res://assets/interface/transparent_box.tres" id="5_423s7"]
+[ext_resource type="Texture2D" uid="uid://bptnkra6yosx8" path="res://assets/interface/edit_delete.png" id="6_suvvb"]
+[ext_resource type="PackedScene" uid="uid://m84o33k74sjo" path="res://furni/gizmo.tscn" id="7_5w02n"]
+[ext_resource type="Texture2D" uid="uid://cg1nohe7slnuh" path="res://assets/icons/mixer.png" id="7_gjxmb"]
+[ext_resource type="FontFile" uid="uid://q2j07wru7jen" path="res://assets/interface/volter-bold-goldfish.ttf" id="7_swp6q"]
+[ext_resource type="Texture2D" uid="uid://6230radtsg7x" path="res://assets/icons/cokeCouch.png" id="7_tuwvl"]
+[ext_resource type="Texture2D" uid="uid://cputpu3eju8t7" path="res://assets/icons/seperator_white.png" id="8_oq5xb"]
+[ext_resource type="PackedScene" uid="uid://dxa303jetguwf" path="res://furni/mixer.tscn" id="8_uwlur"]
+[ext_resource type="Texture2D" uid="uid://cdgolkge2dai8" path="res://assets/interface/edit_move.png" id="10_1hmel"]
+[ext_resource type="FontFile" uid="uid://u2c73rms1h2g" path="res://assets/interface/volter-goldfish.ttf" id="14_8y6ci"]
+[ext_resource type="Texture2D" uid="uid://dygd3fyun7qvs" path="res://assets/textures/button.png" id="14_cvueo"]
+[ext_resource type="Texture2D" uid="uid://beaf3qqvrl37o" path="res://assets/textures/bar.png" id="15_wpysi"]
+[ext_resource type="Texture2D" uid="uid://b02d3m27g07h6" path="res://assets/textures/logo.png" id="16_xrc88"]
+[ext_resource type="Texture2D" uid="uid://cq4g5fihm37ia" path="res://assets/icons/cables.png" id="18_6f02t"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qno41"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 15.16
+dof_blur_far_transition = -1.0
+dof_blur_near_distance = 0.69
+dof_blur_near_transition = 0.0
+dof_blur_amount = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3w0m"]
+render_priority = 0
+shader = ExtResource("3_cv514")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = false
+shader_parameter/shadow_strength = 1.0
+shader_parameter/highlight_strength = 0.02
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0.00488316, 0.0448674, 0.0808539, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hlv3y"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_v3w0m")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="Theme" id="Theme_4wf1t"]
+default_font = ExtResource("7_swp6q")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bbjsd"]
+sky_top_color = Color(0.82, 0.744833, 0.7298, 1)
+sky_horizon_color = Color(1, 0.9145, 0.81, 1)
+ground_bottom_color = Color(0.266832, 0.383492, 0.490042, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+sun_angle_max = 108.0
+sun_curve = 0.219613
+
+[sub_resource type="Sky" id="Sky_w0w84"]
+sky_material = SubResource("ProceduralSkyMaterial_bbjsd")
+
+[sub_resource type="Environment" id="Environment_nnwn0"]
+background_mode = 2
+background_color = Color(0.493545, 0.493546, 0.493546, 1)
+sky = SubResource("Sky_w0w84")
+sky_rotation = Vector3(0, 0.459022, 0)
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 16.0
+ssao_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqnks"]
+albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rdk53"]
+material = SubResource("StandardMaterial3D_kqnks")
+top_radius = 1.1
+bottom_radius = 1.1
+height = 0.25
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_6xmsn")
+
+[node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+script = ExtResource("3_j6faj")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 0, 0)
+cull_mask = 1048573
+environment = ExtResource("1_5vk6l")
+attributes = SubResource("CameraAttributesPractical_qno41")
+current = true
+fov = 37.8493
+size = 1.901
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera/Camera3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.56)
+mesh = SubResource("QuadMesh_hlv3y")
+skeleton = NodePath("../../../../..")
+
+[node name="gizmo" parent="." instance=ExtResource("7_5w02n")]
+transform = Transform3D(-1, -3.49246e-09, 8.98726e-08, 5.00586e-09, 1, 3.6016e-10, -9.03383e-08, 2.73758e-10, -1, 9.99998, 3.1665e-08, 10)
+
+[node name="Room" parent="." instance=ExtResource("1_7g0b3")]
+transform = Transform3D(0.0025049, 0.00173362, 0.999995, -0.000769903, 0.999998, -0.00173169, -0.999997, -0.000765551, 0.00250623, 0, 0, 0)
+
+[node name="Mixer" parent="Room" instance=ExtResource("8_uwlur")]
+transform = Transform3D(0.999996, -0.000769892, 0.00250494, 0.000765562, 0.999998, 0.00173361, -0.00250627, -0.0017317, 0.999996, -0.498746, 0.000484027, 0.501251)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+theme = SubResource("Theme_4wf1t")
+
+[node name="Bar" type="TextureRect" parent="UI"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("15_wpysi")
+expand_mode = 3
+stretch_mode = 1
+
+[node name="Logo" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -128.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("16_xrc88")
+
+[node name="edit" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/edit"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -403.03
+offset_top = -482.265
+offset_right = -147.03
+offset_bottom = -226.265
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI/edit/PanelContainer"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="UI/edit/PanelContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="iconCamera" type="Camera3D" parent="UI/edit/PanelContainer/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 2.13841, 1.74601, 2.13841)
+cull_mask = 2
+environment = SubResource("Environment_nnwn0")
+v_offset = -0.565
+projection = 1
+current = true
+size = 2.333
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UI/edit/PanelContainer/SubViewportContainer/SubViewport/iconCamera"]
+transform = Transform3D(0.707107, 0, -0.707107, -0.353553, 0.866026, -0.353553, 0.612373, 0.5, 0.612373, 0, -0.946, -8.587)
+layers = 2
+mesh = SubResource("CylinderMesh_rdk53")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="UI/edit/PanelContainer/SubViewportContainer/SubViewport/iconCamera/MeshInstance3D"]
+transform = Transform3D(0.707106, -0.704864, 0.0562664, 0, 0.0795733, 0.996829, -0.707106, -0.704864, 0.0562665, 0.344639, 4.93359, 0.344639)
+layers = 2
+light_color = Color(1, 0.9225, 0.85, 1)
+light_energy = 10.0
+shadow_enabled = true
+shadow_blur = 5.565
+spot_range = 5.67071
+spot_angle = 13.0787
+
+[node name="buttons" type="GridContainer" parent="UI/edit"]
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -169.0
+offset_right = 521.0
+offset_bottom = -133.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+columns = 4
+
+[node name="move" type="Panel" parent="UI/edit/buttons"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="TextureRect" type="TextureRect" parent="UI/edit/buttons/move"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_1hmel")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="UI/edit/buttons/move"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_swp6q")
+theme_override_font_sizes/font_size = 14
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/edit/buttons/move"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="delete" type="Panel" parent="UI/edit/buttons"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="TextureRect" type="TextureRect" parent="UI/edit/buttons/delete"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_suvvb")
+stretch_mode = 3
+
+[node name="Label2" type="Label" parent="UI/edit/buttons/delete"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_swp6q")
+theme_override_font_sizes/font_size = 14
+text = "Delete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/edit/buttons/delete"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/edit"]
+layout_mode = 2
+offset_left = -380.0
+offset_top = -228.0
+offset_right = -17.0
+offset_bottom = -185.0
+
+[node name="Name" type="Label" parent="UI/edit/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.462745, 0.407843, 1)
+theme_override_fonts/font = ExtResource("7_swp6q")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 2
+
+[node name="Desc" type="Label" parent="UI/edit/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.462745, 0.407843, 1)
+theme_override_fonts/font = ExtResource("14_8y6ci")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+
+[node name="spawner" type="HBoxContainer" parent="UI"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -109.0
+offset_right = 148.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="mixer" type="Panel" parent="UI/spawner"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/spawner/mixer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_cvueo")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="UI/spawner/mixer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("5_423s7")
+theme_override_styles/disabled_mirrored = ExtResource("5_423s7")
+theme_override_styles/disabled = ExtResource("5_423s7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover_pressed = ExtResource("5_423s7")
+theme_override_styles/hover_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover = ExtResource("5_423s7")
+theme_override_styles/pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/pressed = ExtResource("5_423s7")
+theme_override_styles/normal_mirrored = ExtResource("5_423s7")
+theme_override_styles/normal = ExtResource("5_423s7")
+
+[node name="TextureRect" type="TextureRect" parent="UI/spawner/mixer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_gjxmb")
+expand_mode = 1
+
+[node name="sep" type="Panel" parent="UI/spawner"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/spawner/sep"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_cvueo")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="UI/spawner/sep"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = ExtResource("5_423s7")
+theme_override_styles/disabled_mirrored = ExtResource("5_423s7")
+theme_override_styles/disabled = ExtResource("5_423s7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover_pressed = ExtResource("5_423s7")
+theme_override_styles/hover_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover = ExtResource("5_423s7")
+theme_override_styles/pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/pressed = ExtResource("5_423s7")
+theme_override_styles/normal_mirrored = ExtResource("5_423s7")
+theme_override_styles/normal = ExtResource("5_423s7")
+
+[node name="TextureRect" type="TextureRect" parent="UI/spawner/sep/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("8_oq5xb")
+expand_mode = 3
+
+[node name="cc" type="Panel" parent="UI/spawner"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/spawner/cc"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_cvueo")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="UI/spawner/cc"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = ExtResource("5_423s7")
+theme_override_styles/disabled_mirrored = ExtResource("5_423s7")
+theme_override_styles/disabled = ExtResource("5_423s7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover_pressed = ExtResource("5_423s7")
+theme_override_styles/hover_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover = ExtResource("5_423s7")
+theme_override_styles/pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/pressed = ExtResource("5_423s7")
+theme_override_styles/normal_mirrored = ExtResource("5_423s7")
+theme_override_styles/normal = ExtResource("5_423s7")
+
+[node name="TextureRect" type="TextureRect" parent="UI/spawner/cc/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("7_tuwvl")
+expand_mode = 3
+
+[node name="cables" type="Panel" parent="UI/spawner"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("5_423s7")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/spawner/cables"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_cvueo")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="UI/spawner/cables"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = ExtResource("5_423s7")
+theme_override_styles/disabled_mirrored = ExtResource("5_423s7")
+theme_override_styles/disabled = ExtResource("5_423s7")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover_pressed = ExtResource("5_423s7")
+theme_override_styles/hover_mirrored = ExtResource("5_423s7")
+theme_override_styles/hover = ExtResource("5_423s7")
+theme_override_styles/pressed_mirrored = ExtResource("5_423s7")
+theme_override_styles/pressed = ExtResource("5_423s7")
+theme_override_styles/normal_mirrored = ExtResource("5_423s7")
+theme_override_styles/normal = ExtResource("5_423s7")
+
+[node name="TextureRect" type="TextureRect" parent="UI/spawner/cables/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_6f02t")
+expand_mode = 1
+
+[connection signal="pressed" from="UI/edit/buttons/move/Button" to="." method="_edit_move"]
+[connection signal="button_up" from="UI/edit/buttons/delete/Button" to="." method="_edit_delete"]
+[connection signal="button_up" from="UI/spawner/mixer/Button" to="." method="_spawn_mixer"]
+[connection signal="button_up" from="UI/spawner/sep/Button" to="." method="_spawn_sep"]
+[connection signal="gui_input" from="UI/spawner/sep/Button" to="." method="_change_sep_color"]
+[connection signal="button_up" from="UI/spawner/cc/Button" to="." method="_spawn_cc"]
+[connection signal="button_up" from="UI/spawner/cables/Button" to="." method="_spawn_cables"]
